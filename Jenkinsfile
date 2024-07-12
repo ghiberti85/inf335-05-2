@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clona o código fonte do repositório
                 git branch: 'main', url: 'https://github.com/ghiberti85/inf335-05-2.git'
             }
         }
@@ -12,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Define o nome da imagem Docker
-                    def dockerImage = docker.build("olaunicamp")
+                    dockerImage = docker.build("olaunicamp")
                 }
             }
         }
