@@ -10,7 +10,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Define o nome da imagem Docker
+                    // Define o nome da imagem Docker e constrói a imagem
                     dockerImage = docker.build("olaunicamp")
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     // Executa a imagem Docker
-                    dockerImage.run('-d')
+                    dockerImage.run('')
                 }
             }
         }
@@ -27,11 +27,7 @@ pipeline {
     post {
         always {
             script {
-                // Verifica o log do container
-                def output = dockerImage.inside {
-                    sh 'java OlaUnicamp'
-                }
-                echo output
+                echo 'Pipeline finalizado!'
             }
         }
     }
